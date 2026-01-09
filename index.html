@@ -2,148 +2,260 @@
 <html lang="ka">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>ფორმა</title>
   <style>
     :root{
       --green:#47b66c;
       --green-soft:#eef7f1;
       --border:#47b66c;
+      --text:#1b1b1b;
+      --muted:#667085;
       --radius:20px;
+      --shadow: 0 10px 24px rgba(16, 24, 40, 0.08);
     }
-    *{box-sizing:border-box}
+
+    *{ box-sizing:border-box; }
     body{
       margin:0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background:#ffffff;
-      color:#1b1b1b;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background:#fff;
+      color:var(--text);
+      line-height:1.35;
     }
+
     .container{
       max-width:1100px;
       margin:40px auto;
       padding:16px;
     }
+
     .card{
       background:var(--green-soft);
       border:1.5px solid var(--border);
       border-radius:var(--radius);
-      padding:32px 24px 40px;
+      padding:32px 24px 28px;
       text-align:center;
+      box-shadow: var(--shadow);
     }
+
     .logo{
       display:flex;
       justify-content:center;
       margin-bottom:12px;
     }
-    .logo img{height:48px; max-width: 220px; width: auto;}
+    .logo img{
+      height:48px;
+      max-width:240px;
+      width:auto;
+    }
+
     h1{
       font-size:16px;
-      font-weight:500;
+      font-weight:600;
       color:#2eaf5f;
-      margin:8px 0 6px;
+      margin:10px 0 10px;
     }
-    .warning{
-      font-size:13px;
-      color:#e53935;
-      margin-bottom:14px;
-    }
+
     .date{
       font-size:13px;
+      color:var(--muted);
       margin-bottom:18px;
     }
+
     .inputs{
-      max-width:420px;
-      margin:0 auto 18px;
+      max-width:460px;
+      margin:0 auto 14px;
       display:grid;
       gap:12px;
     }
+
     input{
       width:100%;
       padding:12px 14px;
-      border-radius:10px;
+      border-radius:12px;
       border:1px solid #d9e5dd;
-      font-size:14px;
+      font-size:15px;
+      outline:none;
+      background:#fff;
     }
+    input:focus{
+      border-color: rgba(71,182,108,0.7);
+      box-shadow: 0 0 0 4px rgba(71,182,108,0.18);
+    }
+
     .captcha{
       background:#fff;
       border:1px solid #d9e5dd;
-      border-radius:8px;
-      padding:10px;
+      border-radius:12px;
+      padding:12px 12px;
       display:flex;
       align-items:center;
       justify-content:space-between;
+      gap:10px;
       font-size:13px;
-    }
-    .submit{
-      margin-top:18px;
-    }
-    button{
-      background:#8fd3a6;
-      color:#ffffff;
-      border:none;
-      padding:12px 38px;
-      font-size:15px;
-      border-radius:12px;
-      cursor:pointer;
+      color:var(--muted);
     }
 
-    /* table */
+    .submit{
+      margin-top:12px;
+      display:flex;
+      justify-content:center;
+    }
+
+    button{
+      background:var(--green);
+      color:#fff;
+      border:none;
+      padding:12px 40px;
+      font-size:15px;
+      border-radius:14px;
+      cursor:pointer;
+      box-shadow: 0 8px 16px rgba(71,182,108,0.25);
+    }
+    button:active{ transform: translateY(1px); }
+
+    /* Desktop table wrapper */
     .table-wrap{
-      margin-top:40px;
+      margin-top:28px;
       border:1.5px solid var(--border);
       border-radius:18px;
       overflow:hidden;
+      box-shadow: var(--shadow);
     }
+
     table{
       width:100%;
       border-collapse:collapse;
       background:var(--green-soft);
       font-size:14px;
     }
+
     thead{
       background:var(--green);
       color:#fff;
     }
+
     th,td{
       padding:12px 10px;
       text-align:center;
       border-right:1px solid rgba(255,255,255,0.35);
+      vertical-align:middle;
     }
     th:last-child,td:last-child{border-right:none}
+
     .photo{
       width:60px;
       height:60px;
-      border-radius:6px;
-      object-fit:cover;
-    }
-    .badge{
-      background:#47b66c;
-      color:#fff;
-      padding:6px 10px;
       border-radius:10px;
-      font-size:13px;
-      display:inline-block;
+      object-fit:cover;
+      border:2px solid rgba(255,255,255,0.65);
+      background:#fff;
     }
 
-    /* mobile */
-    @media(max-width:430px){
-      .card{padding:22px 14px}
-      h1{font-size:14px}
-      table{font-size:12px}
-      th,td{padding:8px 6px}
-      .photo{width:44px;height:44px}
+    .badge{
+      background:var(--green);
+      color:#fff;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:13px;
+      display:inline-flex;
+      gap:6px;
+      align-items:center;
+      justify-content:center;
+      white-space:nowrap;
+    }
+
+    /* ===== Mobile: turn table into cards ===== */
+    @media (max-width: 520px){
+      .container{
+        margin:16px auto;
+        padding:12px;
+      }
+      .card{
+        padding:20px 14px 18px;
+        border-radius:18px;
+      }
+      .logo img{ height:42px; }
+      h1{ font-size:14px; }
+      .date{ font-size:12px; }
+      button{ width:100%; max-width:460px; }
+
+      /* hide header row */
+      thead{ display:none; }
+
+      .table-wrap{
+        border-radius:18px;
+        overflow:visible; /* so card shadows look nice */
+        border:none;      /* we’ll show borders on each row-card */
+        box-shadow:none;
+        margin-top:18px;
+      }
+
+      table{
+        background:transparent;
+        border-collapse:separate;
+        border-spacing:0 12px; /* space between cards */
+        font-size:13px;
+      }
+
+      tbody tr{
+        display:grid;
+        grid-template-columns: 70px 1fr;
+        gap:10px 12px;
+        align-items:start;
+        padding:14px;
+        background:var(--green-soft);
+        border:1.5px solid var(--border);
+        border-radius:16px;
+        box-shadow: var(--shadow);
+      }
+
+      tbody td{
+        display:block;
+        border:none;
+        padding:0;
+        text-align:left;
+      }
+
+      /* First cell (photo) sits left */
+      tbody td:first-child{
+        grid-row: 1 / span 4;
+        grid-column: 1;
+      }
+      .photo{
+        width:70px;
+        height:70px;
+        border-radius:12px;
+      }
+
+      /* Each value gets its label using data-label */
+      tbody td[data-label]::before{
+        content: attr(data-label);
+        display:block;
+        font-size:11px;
+        color:var(--muted);
+        margin-bottom:4px;
+      }
+
+      .badge{
+        font-size:12px;
+        padding:6px 10px;
+        white-space:normal; /* allow wrap on small screens */
+        border-radius:12px;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <section class="card">
       <div class="logo">
-        <!-- logo -->
-        <img src="cec.webp" alt="logo">
+        <img src="cec.webp" alt="logo" />
       </div>
-      <h1>გადამოწმება პირადი მონაცემებისა და გამოცდის</h1>
-      
+
+      <h1>გადამოწმება პირადი მონაცემებისა და მისამართი ამომრჩეველთა ერთიან სიაში</h1>
       <div class="date">(01.11.2025 მდგომარეობით)</div>
 
       <div class="inputs">
@@ -170,15 +282,18 @@
             <th>ცენტრი</th>
           </tr>
         </thead>
+
         <tbody>
           <tr>
             <td><img class="photo" src="photo.jpg" alt="photo"></td>
-            <td>თაბაგარი</td>
-            <td>თაბა</td>
-            <td>11.11.2004</td>
-            <td><span class="badge">08.18</span></td>
-            <td>თბილისი მისამართის გარეშე</td>
-            <td>თბილისი სოხუმის ქ.№7, №9</td>
+            <td data-label="გვარი">თაბაგარი</td>
+            <td data-label="სახელი">თაბა</td>
+            <td data-label="დაბ.თარიღი">11.11.2004</td>
+            <td data-label="სტატუსი">
+              <span class="badge">ელექტრონული • 08.18</span>
+            </td>
+            <td data-label="მისამართი">თბილისი მისამართის გარეშე</td>
+            <td data-label="ცენტრი">თბილისი სოხუმის ქ.№7, №9</td>
           </tr>
         </tbody>
       </table>
